@@ -12,16 +12,6 @@ services:
     restart: on-failure
     networks:
       - intranet
-  kratos-postgres:
-    image: postgres:9.6
-    ports:
-      - "5432:5432"
-    environment:
-      - POSTGRES_USER=kratos
-      - POSTGRES_PASSWORD=secret
-      - POSTGRES_DB=kratos
-    networks:
-      - intranet
   kratos:
     depends_on:
       - kratos-migrate
