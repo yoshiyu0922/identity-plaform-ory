@@ -1,17 +1,19 @@
 version: '3.7'
 services:
-  kratos-postgres:
+  postgres-db:
     image: postgres:15
     ports:
       - "5432:5432"
     environment:
-      - POSTGRES_USER=kratos
+      - POSTGRES_USER=ory
       - POSTGRES_PASSWORD=secret
-      - POSTGRES_DB=kratos
+      - POSTGRES_DB=platform
     healthcheck:
-      test: pg_isready -U kratros -d kratos
+      test: pg_isready -U ory -d platform
       interval: 5s
       timeout: 1s
       retries: 3
+    volumes:
+      - ./initdb:/docker-entrypoint-initdb.d
     networks:
       - intranet

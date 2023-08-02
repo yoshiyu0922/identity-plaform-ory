@@ -1,2 +1,2 @@
-kratos:
-    docker compose -f kratos/compose.yml -f db/compose.yml up --build --force-recreate
+run:
+    docker compose -f db/compose.yml -f kratos/compose.yml -f hydra/compose.yml up --build --force-recreate

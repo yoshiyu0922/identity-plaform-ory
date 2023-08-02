@@ -3,10 +3,10 @@ services:
   kratos-migrate:
     image: oryd/kratos:v1.0.0
     environment:
-      - DSN=postgres://kratos:secret@kratos-postgres:5432/kratos?sslmode=disable&max_conns=20&max_idle_conns=4
+      - DSN=postgres://ory:secret@postgres-db:5432/platform?sslmode=disable&max_conns=20&max_idle_conns=4&search_path=kratos
     volumes:
       - type: bind
-        source: ./config
+        source: ../kratos/config
         target: /etc/config/kratos
     command: -c /etc/config/kratos/kratos.yml migrate sql -e --yes
     restart: on-failure
@@ -21,12 +21,12 @@ services:
       - '4434:4434' # admin
     restart: unless-stopped
     environment:
-      - DSN=postgres://kratos:secret@kratos-postgres:5432/kratos?sslmode=disable&max_conns=20&max_idle_conns=4
+      - DSN=postgres://ory:secret@postgres-db:5432/platform?sslmode=disable&max_conns=20&max_idle_conns=4&search_path=kratos
       - LOG_LEVEL=trace
     command: serve -c /etc/config/kratos/kratos.yml --dev --watch-courier
     volumes:
       - type: bind
-        source: ./config
+        source: ../kratos/config
         target: /etc/config/kratos
     networks:
       - intranet
