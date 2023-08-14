@@ -1,4 +1,4 @@
-version: v0.13.0
+version: v1.0.0
 
 dsn: memory
 
@@ -75,7 +75,15 @@ selfservice:
         password:
           hooks:
             - hook: session
-            - hook: show_verification_ui
+#            - hook: show_verification_ui
+            - hook: web_hook
+              config:
+                url: http://api:8080/echo
+                response:
+                  ignore: true
+                method: "POST"
+                can_interrupt: false
+                body: file:///etc/config/kratos/body.jsonnet
 
 log:
   level: debug
