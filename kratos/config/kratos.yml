@@ -38,6 +38,8 @@ selfservice:
           # Set 'origin' to the exact URL of the page that prompts the user to use WebAuthn. You must include the scheme, host, and port.
           origin: http://localhost:4455
       enabled: true
+    oidc:
+      enabled: false
 
   flows:
     error:
@@ -84,6 +86,11 @@ selfservice:
                 method: "POST"
                 can_interrupt: false
                 body: file:///etc/config/kratos/body.jsonnet
+
+oauth2_provider:
+  url: http://hydra:4445
+  headers:
+    Authorization: Bearer some-token
 
 log:
   level: debug
