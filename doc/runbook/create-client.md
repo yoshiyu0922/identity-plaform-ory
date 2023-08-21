@@ -21,7 +21,7 @@ POST http://localhost:4445/admin/clients
 {
   "client_name": "yoshiyu0922",
   "redirect_uris": ["http://127.0.0.1:5555/callback"],
-  "grant_types": ["authorization_code","refresh_token"],
+  "grant_types": ["authorization_code", "refresh_token"],
   "response_types": ["code", "id_token"],
   "scope": "openid offline",
   "token_endpoint_auth_method": "client_secret_post",
